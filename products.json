@@ -1,0 +1,27 @@
+[
+    {
+      "name": "Nike Air Max 270",
+      "image": "https://static.nike.com/a/images/t_PDP_936_v1/f_auto%2Cq_auto%3Aeco/awjogtdnqxniqqk0wpgf/AIR%2BMAX%2B270.png",
+      "price": 150.00,
+      "description": "Лёгкие и стильные кроссовки с амортизацией Air Max 270, идеально подходят для повседневной носки и прогулок."
+    },
+    {
+      "name": "Adidas Ultraboost 22",
+      "image": "https://media.finishline.com/i/finishline/AH6789_006_P1?%24default%24=&bg=rgb%28237%2C237%2C237%29&h=671&w=671",
+      "price": 180.00,
+      "description": "Инновационные беговые кроссовки с исключительной амортизацией и поддержкой стопы, созданные для максимального комфорта."
+    },
+    {
+      "name": "New Balance 990v5",
+      "image": "https://static.nike.com/a/images/t_PDP_936_v1/f_auto%2Cq_auto%3Aeco/7992669b-d580-458f-87b9-1b7e3497800e/W%2BAIR%2BMAX%2B270.png",
+      "price": 175.00,
+      "description": "Классическая модель от New Balance, сочетающая премиальные материалы и устойчивую подошву для идеального городского стиля."
+    },
+    {
+      "name": "Puma RS-X3 Puzzle",
+      "image": "https://static.nike.com/a/images/t_PDP_936_v1/f_auto%2Cq_auto%3Aeco/1b8e8e0e-acdd-429a-986c-24ccb2254d05/W%2BAIR%2BMAX%2B270.png",
+      "price": 110.00,
+      "description": "Яркие и креативные кроссовки с ретро-дизайном и высокой подошвой, вдохновлённые уличной модой и стилем 90-х."
+    }
+  ]
+  
