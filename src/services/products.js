@@ -1,6 +1,6 @@
-import ProductCollection from '../db/models/Movie.js';
+import ProductыCollection from '../db/models/Product.js';
 
 
-export const getProducts = async () => ProductCollection.find();
+export const getProducts = async () => ProductыCollection.find();
 
-export const getProductById = (id) => ProductCollection.findOne({ _id: id });
+export const getProductById = (id) => ProductыCollection.findOne({ _id: id });

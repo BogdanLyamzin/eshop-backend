@@ -5,6 +5,8 @@ import { logger } from "./middlewares/logger.js";
 import { notFoundHandler } from "./middlewares/notFoundHandler.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 
+import productsRouter from "./routers/products.js";
+import authRouter from "./routers/auth.js";
 import moviesRouter from "./routers/movies.js";
 
 import { getEnvVar } from "./utils/getEnvVar.js";
@@ -16,7 +18,9 @@ export const startServer = ()=> {
     app.use(express.json());
     // app.use(logger);
 
-    app.use("/movies", moviesRouter);
+    app.use("/api/auth", authRouter);
+    app.use("/api/products", productsRouter);
+    app.use("/api/movies", moviesRouter);
     
     app.use(notFoundHandler);
 
