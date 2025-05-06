@@ -6,6 +6,7 @@ import { notFoundHandler } from "./middlewares/notFoundHandler.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 
 import productsRouter from "./routers/products.js";
+import cartsRouter from "./routers/carts.js";
 import authRouter from "./routers/auth.js";
 import moviesRouter from "./routers/movies.js";
 
@@ -20,6 +21,7 @@ export const startServer = ()=> {
 
     app.use("/api/auth", authRouter);
     app.use("/api/products", productsRouter);
+    app.use("/api/carts", cartsRouter);
     app.use("/api/movies", moviesRouter);
     
     app.use(notFoundHandler);
