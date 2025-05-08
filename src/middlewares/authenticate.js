@@ -1,7 +1,7 @@
 import createHttpError from "http-errors";
 import jwt from "jsonwebtoken";
 
-import { findSession, findUser } from "../services/auth.js";
+import { findUser } from "../services/auth.js";
 
 export const authenticate = async(req, res, next)=> {
     // const {authorization} = req.headers;
