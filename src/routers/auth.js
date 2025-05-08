@@ -3,6 +3,8 @@ import { Router } from 'express';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { validateBody } from '../utils/validateBody.js';
 
+import { authenticate } from '../middlewares/authenticate.js';
+
 import { authRegisterSchema, authLoginSchema } from '../validation/auth.js';
 
 import {
@@ -29,6 +31,6 @@ authRouter.post(
 
 authRouter.post('/refresh', ctrlWrapper(refreshController));
 
-authRouter.post('/logout', ctrlWrapper(logoutController));
+authRouter.post('/logout', authenticate, ctrlWrapper(logoutController));
 
 export default authRouter;

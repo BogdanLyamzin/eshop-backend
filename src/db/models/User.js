@@ -5,10 +5,6 @@ import { handleSaveError, setUpdateSettings } from './hooks.js';
 import { emailRegexp } from '../../constants/auth.js';
 
 const userSchema = new Schema({
-    username: {
-        type: String,
-        required: [true, "Username must be exist"],
-    },
     email: {
         type: String,
         match: emailRegexp,
@@ -18,6 +14,9 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
+    },
+    token: {
+        type: String,
     }
 }, {versionKey: false, timestamps: true});
 

@@ -1,4 +1,5 @@
 import createHttpError from "http-errors";
+import jwt from "jsonwebtoken";
 
 import { findSession, findUser } from "../services/auth.js";
 
@@ -8,26 +9,21 @@ export const authenticate = async(req, res, next)=> {
     if(!authorization) {
         return next(createHttpError(401, "Authorization header missing"));
     }
-    const [bearer, accessToken] = authorization.split(" ");
+    const [bearer, token] = authorization.split(" ");
     if(bearer !== "Bearer") {
         return next(createHttpError(401, "Header must have type Bearer"));
     }
+    try {
+        const {email} = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await findUser({email});
+        if(!user) {
+            return next(createHttpError(401, "User not found"));
+        }
+        req.user = user;
 
-    const session = await findSession({accessToken});
-    if(!session) {
-        return next(createHttpError(401, "Session not found"));
+        next();
     }
-
-    if(session.accessTokenValidUntil < Date.now()) {
-        return next(createHttpError(401, "Access token expired"));
+    catch(error) {
+        next(createHttpError(401, error.message));
     }
-
-    const user = await findUser({_id: session.userId});
-    if(!user) {
-        return next(createHttpError(401, "User not found"));
-    }
-
-    req.user = user;
-
-    next();
 };

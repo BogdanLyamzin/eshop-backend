@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import createHttpError from "http-errors";
 import {randomBytes} from "node:crypto";
+import jwt from "jsonwebtoken";
 
 import UserCollection from "../db/models/User.js";
 import SessionCollection from '../db/models/Session.js';
@@ -50,14 +51,11 @@ export const loginUser = async payload => {
         throw createHttpError(401, "Email or password invalid");
     }
 
-    await SessionCollection.findOneAndDelete({userId: user._id});
+    const token = jwt.sign({email}, process.env.JWT_SECRET, {expiresIn: "24h"});
 
-    const session = createSession();
+    await UserCollection.findOneAndUpdate({email}, {token});
 
-    return SessionCollection.create({
-        userId: user._id, 
-        ...session,
-    });
+    return {token};
 };
 
 export const refreshUser = async ({refreshToken, sessionId})=> {
@@ -81,4 +79,4 @@ export const refreshUser = async ({refreshToken, sessionId})=> {
     });
 };
 
-export const logoutUser = sessionId => SessionCollection.deleteOne({_id: sessionId});
+export const logoutUser = ({email}) => UserCollection.findOneAndUpdate({email}, {token: null});

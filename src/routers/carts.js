@@ -19,7 +19,7 @@ cartRouter.post('/', async (req, res) => {
 cartRouter.get('/:cartId', async (req, res) => {
   try {
     // const cart = await Cart.findById(req.params.cartId).populate('items.productId');
-    const cart = await Cart.findById(req.params.cartId);
+    const cart = await Cart.findById(req.params.cartId).populate("items");
     if (!cart) return res.status(404).json({ error: 'Корзина не найдена' });
     res.json(cart);
   } catch (err) {

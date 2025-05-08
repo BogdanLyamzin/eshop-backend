@@ -22,16 +22,12 @@ export const registerController = async(req, res)=> {
 };
 
 export const loginController = async(req, res)=> {
-    const session = await loginUser(req.body);
-
-    setupSession(res, session);
+    const data = await loginUser(req.body);
 
     res.json({
         status: 200,
         message: "Login successfully",
-        data: {
-            accessToken: session.accessToken,
-        }
+        data
     });
 };
 
@@ -50,12 +46,7 @@ export const refreshController = async(req, res)=> {
 };
 
 export const logoutController = async(req, res)=> {
-    if(req.cookies.sessionId) {
-        await logoutUser(req.cookies.sessionId);
-    }
-
-    res.clearCookie("sessionId");
-    res.clearCookie("refreshToken");
+    await logoutUser(req.user);
 
     res.status(204).send();
 };
