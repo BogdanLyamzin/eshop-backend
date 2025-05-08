@@ -36,7 +36,7 @@ export const loginUser = async payload => {
 
     await UserCollection.findOneAndUpdate({email}, {token});
 
-    return {token};
+    return {token, user: {email}};
 };
 
 export const refreshUser = async ({refreshToken, sessionId})=> {
