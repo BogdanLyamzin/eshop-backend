@@ -12,6 +12,7 @@ import {
   loginController,
   refreshController,
   logoutController,
+  getCurrentController,
 } from '../controllers/auth.js';
 
 const authRouter = Router();
@@ -28,6 +29,8 @@ authRouter.post(
   validateBody(authLoginSchema),
   ctrlWrapper(loginController),
 );
+
+authRouter.get("/current", authenticate, ctrlWrapper(getCurrentController));
 
 authRouter.post('/refresh', ctrlWrapper(refreshController));
 

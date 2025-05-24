@@ -12,12 +12,15 @@ import {
 } from '../controllers/movies.js';
 
 import { isValidId } from '../middlewares/isValidId.js';
+import {authenticate} from "../middlewares/authenticate.js";
 
 import { validateBody } from '../utils/validateBody.js';
 
 import { movieAddSchema, movieUpdateSchema } from '../validation/movies.js';
 
 const moviesRouter = Router();
+
+moviesRouter.use(authenticate);
 
 moviesRouter.get('/', ctrlWrapper(getMoviesController));
 

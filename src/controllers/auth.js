@@ -19,6 +19,14 @@ export const loginController = async(req, res)=> {
     });
 };
 
+export const getCurrentController = (req, res)=> {
+    const {email} = req.user;
+
+    res.json({
+        email,
+    });
+}
+
 export const refreshController = async(req, res)=> {
     await refreshUser(req.cookies);
 

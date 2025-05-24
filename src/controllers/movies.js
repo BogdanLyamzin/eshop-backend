@@ -9,10 +9,11 @@ import { movieSortFields } from '../db/models/Movie.js';
 import { getMovies, getMovieById, addMovie, updateMovie, deleteMovieById } from '../services/movies.js';
 
 export const getMoviesController = async (req, res) => {
-  const paginationParams = parsePaginationParams(req.query);
-  const sortParams = parseSortParams(req.query, movieSortFields);
-  const filters = parseMovieFilterParams(req.query);
-  const data = await getMovies({...paginationParams, ...sortParams, filters});
+  // const paginationParams = parsePaginationParams(req.query);
+  // const sortParams = parseSortParams(req.query, movieSortFields);
+  // const filters = parseMovieFilterParams(req.query);
+  const {_id: owner} = req.user;
+  const data = await getMovies({filters: {owner}});
 
   res.json({
     status: 200,
@@ -38,7 +39,8 @@ export const getMovieByIdController = async (req, res) => {
 };
 
 export const addMovieController = async(req, res)=> {
-  const data = await addMovie(req.body);
+  const {_id: owner} = req.user;
+  const data = await addMovie({...req.body, owner});
 
   res.status(201).json({
     status: 201,
