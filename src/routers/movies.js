@@ -34,4 +34,6 @@ moviesRouter.patch('/:id', isValidId, validateBody(movieUpdateSchema), ctrlWrapp
 
 moviesRouter.delete('/:id', isValidId, ctrlWrapper(deleteMovieController));
 
+moviesRouter.get("/types", ctrlWrapper())
+
 export default moviesRouter;

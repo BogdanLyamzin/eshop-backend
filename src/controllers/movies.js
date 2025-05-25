@@ -6,6 +6,8 @@ import { parseMovieFilterParams } from '../utils/filters/parseMovieFilterParams.
 
 import { movieSortFields } from '../db/models/Movie.js';
 
+import { typeList } from '../constants/movies.js';
+
 import { getMovies, getMovieById, addMovie, updateMovie, deleteMovieById } from '../services/movies.js';
 
 export const getMoviesController = async (req, res) => {
@@ -86,4 +88,10 @@ export const deleteMovieController = async(req, res)=> {
   }
 
   res.status(204).send();
+};
+
+export const getMovieTypesController = (_, res)=> {
+  res.json({
+    type: typeList,
+  });
 };
