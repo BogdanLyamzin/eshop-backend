@@ -92,6 +92,6 @@ export const deleteMovieController = async(req, res)=> {
 
 export const getMovieTypesController = (_, res)=> {
   res.json({
-    type: typeList,
+    types: typeList,
   });
 };
