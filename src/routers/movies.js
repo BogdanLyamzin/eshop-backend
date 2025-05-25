@@ -9,6 +9,7 @@ import {
   upsertMovieController,
   patchMovieController,
   deleteMovieController,
+  getMovieTypesController,
 } from '../controllers/movies.js';
 
 import { isValidId } from '../middlewares/isValidId.js';
@@ -34,6 +35,6 @@ moviesRouter.patch('/:id', isValidId, validateBody(movieUpdateSchema), ctrlWrapp
 
 moviesRouter.delete('/:id', isValidId, ctrlWrapper(deleteMovieController));
 
-moviesRouter.get("/types", ctrlWrapper())
+moviesRouter.get("/types/all", ctrlWrapper(getMovieTypesController));
 
 export default moviesRouter;
